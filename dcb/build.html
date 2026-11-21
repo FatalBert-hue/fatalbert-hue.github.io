@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DCB build</title>
+<style>
+  body { font-family: system-ui, sans-serif; background: #0a0c14; color: #e8eaf2; margin: 0; padding: 32px 20px; text-align: center; }
+  h1 { font-size: 22px; margin: 0 0 12px; }
+  p { font-size: 16px; line-height: 1.5; color: #aab; max-width: 420px; margin: 0 auto 20px; }
+  a.button { display: inline-block; background: #e8b34b; color: #0a0c14; font-weight: 700; font-size: 17px; padding: 14px 28px; border-radius: 12px; text-decoration: none; }
+  a.button.disabled { opacity: .4; pointer-events: none; }
+  .small { font-size: 13px; color: #778; margin-top: 24px; }
+</style>
+</head>
+<body>
+<h1>DCB build</h1>
+<p id="msg">This is a Deadlock counter-buy build shared from the DCB app. If you have DCB installed, tap below to open it in the app.</p>
+<a class="button disabled" id="open" href="#">Open in DCB</a>
+<p class="small">DCB is an unofficial fan tool for Deadlock, not affiliated with Valve.</p>
+<script>
+  var params = new URLSearchParams(location.search);
+  var data = params.get('data');
+  var link = document.getElementById('open');
+  var msg = document.getElementById('msg');
+  if (data) {
+    link.href = 'dcb://import?data=' + data;
+    link.classList.remove('disabled');
+  } else {
+    msg.textContent = 'This link does not carry a DCB build.';
+  }
+</script>
+</body>
+</html>
